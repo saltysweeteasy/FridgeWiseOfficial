@@ -58,25 +58,37 @@
             mix-blend-mode: multiply;
         }
 
-        /* Mobile Specific Styles (max-width: 420px) */
-        @media (max-width: 420px) {
+        /* Mobile Specific Styles (max-width: 480px) - Videos positioned slightly lower */
+        @media (max-width: 480px) {
+            /* Lock the entire page to prevent any scrolling */
+            html, body {
+                overflow: hidden !important;
+                height: 100% !important;
+                position: fixed !important;
+                width: 100% !important;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+            
             .video-container {
                 min-height: auto;
-                top: auto;
-                transform: none;
                 position: fixed;
                 overflow: visible;
                 padding-right: 0;
+                /* Move videos down by changing top position from 50% to 60% */
+                top: 60%;
+                transform: translateY(-50%);
+                will-change: transform;
             }
             
             /* Colette (Left Video) - Mobile Adjustments */
             .video-pos-left {
-                left: -3px;
+                left: -20px;
                 width: auto;
                 justify-content: flex-start;
                 padding-left: 0;
-                top: 57%;
-                transform: translateY(-50%);
             }
             
             .video-pos-left video {
@@ -91,8 +103,6 @@
                 right: -1px;
                 width: auto;
                 justify-content: flex-end;
-                top: 57%;
-                transform: translateY(-50%);
             }
             
             .video-pos-right video {
@@ -100,6 +110,22 @@
                 width: auto;
                 transform: scale(1);
                 transform-origin: right center;
+            }
+            
+            /* Ensure main content container doesn't overflow */
+            .flex.flex-col.h-screen {
+                height: 100vh !important;
+                overflow: hidden !important;
+            }
+            
+            main {
+                overflow-y: hidden;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
             }
         }
 
@@ -120,6 +146,24 @@
         body { 
             overflow-x: hidden; 
             background-color: #f0fff4;
+        }
+        
+        /* Extra safety for long word on very narrow screens */
+        .hero-title {
+            word-break: keep-all;
+            display: inline-block;
+            max-width: 100%;
+        }
+        
+        /* For desktop, ensure no unwanted scrolling on body */
+        @media (min-width: 481px) {
+            body {
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+            .flex.flex-col.h-screen {
+                height: 100vh;
+            }
         }
     </style>
 </head>
@@ -149,7 +193,7 @@
                         </button>
                         <div class="h-8 border-l border-green-300 mx-4"></div>
                     </div>
-                    <span id="brandLogo" class="font-bold text-green-800 text-xl ml-2 uppercase tracking-tighter">FridgeWise</span>
+                    <span id="brandLogo" class="font-bold text-green-800 text-xl ml-2 uppercase tracking-tighter whitespace-nowrap">FridgeWise</span>
                 </div>
 
                 <div class="flex items-center space-x-4">
@@ -163,12 +207,23 @@
         </header>
 
         <main class="flex-grow flex items-center justify-center animate-on-load">
-            <div class="text-center p-8">
-                <h1 class="text-7xl font-bold mb-4 tracking-tight text-gray-800 uppercase italic">FridgeWise</h1>
-                <p class="text-xl text-gray-700 font-medium max-w-lg mx-auto">
+            <!-- Responsive padding: smaller on mobile, larger on desktop to prevent overflow -->
+            <div class="text-center p-4 sm:p-6 md:p-8 max-w-full w-full">
+                <!-- 
+                    Responsive title sizing: 
+                    - base (mobile very small): text-3xl (1.875rem) ensures it fits on narrow screens (320px)
+                    - sm: text-5xl (3rem) for small tablets
+                    - md: text-6xl (3.75rem) 
+                    - lg: text-7xl (4.5rem) for desktop
+                    Also added tracking-tight and optional break-words for safety
+                -->
+                <h1 class="hero-title text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 tracking-tight text-gray-800 uppercase italic leading-tight">
+                    FridgeWise
+                </h1>
+                <p class="text-xl text-gray-700 font-medium max-w-lg mx-auto px-2">
                     Your reliable companion for any cooking suggestions!
                 </p>
-                <p class="text-gray-500 mt-2 italic">mwehehehehe</p>
+                <p class="text-gray-500 mt-2 italic">If your cooking meal is your mastery, who are you without it?</p>
                 
                 <div id="loginSection" class="mt-12 flex flex-col items-center space-y-4">
                     <a href="login.html" class="inline-block px-16 py-3 bg-white border-2 border-blue-500 text-blue-600 font-bold rounded hover:bg-blue-50 transition-all duration-200 uppercase tracking-wide">
@@ -206,6 +261,19 @@
                 </a>
                 <a href="maindashboard.html" class="flex items-center py-3 px-4 rounded-xl text-gray-700 hover:bg-green-100 hover:text-green-900 transition-colors font-semibold">
                     <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg> Main Dashboard
+                </a>
+                <a href="secondarydashboard.html" class="flex items-center py-3 px-4 rounded-xl text-gray-700 hover:bg-green-100 hover:text-green-900 transition-colors font-semibold">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg> Secondary Dashboard
+                </a>
+                <div class="my-4 border-t border-gray-100"></div>
+                <a href="cookinghistory.html" class="flex items-center py-3 px-4 rounded-xl text-gray-700 hover:bg-green-100 hover:text-green-900 transition-colors font-semibold">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Cooking History
+                </a>
+                <a href="favoritemeal.html" class="flex items-center py-3 px-4 rounded-xl text-gray-700 hover:bg-green-100 hover:text-green-900 transition-colors font-semibold">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg> Favorite Recipes
+                </a>
+                <a href="aboutus.html" class="flex items-center py-3 px-4 rounded-xl text-gray-700 hover:bg-green-100 hover:text-green-900 transition-colors font-semibold">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> About Us
                 </a>
             </nav>
         </div>
@@ -317,6 +385,17 @@
                 });
             }, 3000);
         });
+        
+        // Additional safety: on mobile, prevent any touchmove that could cause scroll
+        if (window.innerWidth <= 480) {
+            document.body.addEventListener('touchmove', function(e) {
+                let target = e.target;
+                let isSidebar = target.closest('#sidebar') || target.closest('#userSidebar');
+                if (!isSidebar) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+        }
     </script>
 </body>
 </html>
