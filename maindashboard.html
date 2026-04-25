@@ -633,8 +633,13 @@
 
 // NEW (Secure):
 const response = await fetch('/api/generate', {
-  method: 'POST',
-  body: JSON.stringify({ contents: [{ parts: [{ text: "Hello!" }] }] })
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json' // Add this line!
+    },
+    body: JSON.stringify({ 
+        contents: [{ parts: [{ text: "Hello!" }] }] 
+    })
 });
             
             // Save to cache
