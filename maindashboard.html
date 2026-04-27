@@ -236,6 +236,26 @@
             text-align: center;
             margin-bottom: 1.5rem;
         }
+        
+        /* Cache badge styles */
+        .cached-badge {
+            background: #10b981;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 10px;
+            vertical-align: middle;
+            display: inline-block;
+            animation: fadeInOut 3s ease-in-out;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(-10px); }
+            20% { opacity: 1; transform: translateY(0); }
+            80% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-10px); }
+        }
     </style>
 </head>
 <body class="font-sans antialiased text-gray-900 overflow-x-hidden">
@@ -476,7 +496,7 @@
                                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.973 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.08-2.268c1.12.312 2.304.48 3.528.48 6.627 0 12-4.973 12-11.111C24 4.973 18.627 0 12 0zm3.84 12.656l-2.4-2.56-4.64 2.56 5.12-5.44 2.4 2.56 4.64-2.56-5.12 5.44z"/></svg>
                                 </button>
                                 <button onclick="shareMeal('instagram')" class="share-btn bg-[#E4405F] hover:bg-[#d62e4c]" title="Share on Instagram">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.132 5.775.072 7.053.012 8.333 0 8.74 0 12s.012 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.012 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.012-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07s-3.585-.015-4.85-.074c-1.17-.061-1.805-.256-2.227-.421-.562-.224-.96-.479-1.382-.899-.419-.419-.679-.824-.896-1.38-.164-.42-.36-1.065-.413-2.235-.057-1.274-.07-1.649-.07-4.859s.015-3.585.074-4.85c.061-1.17.256-1.805.421-2.227.224-.562.479-.96.899-1.382.419-.419.824-.679 1.38-.896.42-.164 1.065-.36 2.235-.413 1.274-.057 1.649-.07 4.859-.07zM12 5.832a6.168 6.168 0 100 12.336 6.168 6.168 0 000-12.336zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.132 5.775.072 7.053.012 8.333 0 8.74 0 12s.012 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.012 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.012-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07s-3.585-.015-4.85-.074c-1.17-.061-1.805-.256-2.227-.421-.562-.224-.96-.479-1.382-.899-.419-.419-.679-.824-.896-1.38-.164-.42-.36-1.065-.413-2.235-.057-1.274-.07-1.649-.07-4.859s.015-3.585.074-4.85c.061-1.17.256-1.805.421-2.227.224-.562.479-.96.899-1.382.419-.419.824-.679 1.38-.896.42-.164 1.065-.36 2.235-.413 1.274-.057 1.649-.07 4.859-.07zM12 5.832a6.168 6.168 0 100 12.336 6.168 6.168 0 000-12.336zm0 10.176a4.008 4.008 0 110-8.016 4.008 4.008 0 010 8.016zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
                                 </button>
                             </div>
                         </div>
@@ -514,6 +534,172 @@
         const videoSizeSlider = document.getElementById('videoSizeSlider');
         const sizeValueSpan = document.getElementById('sizeValue');
         
+        // ========== GLOBAL MEAL CACHE SYSTEM ==========
+        
+        // Save full meal object to global cache
+        async function saveFullMealToCache(mealName, mealData) {
+            if (!mealName) return false;
+            const mealKey = mealName.toLowerCase().replace(/[.#$/[\]]/g, "_");
+            const cacheRef = database.ref(`mealCache/${mealKey}`);
+            
+            try {
+                await cacheRef.set({
+                    name: mealName,
+                    chef_note: mealData.chef_note || "",
+                    ingredients: mealData.ingredients || [],
+                    nutrition: mealData.nutrition || "",
+                    steps: mealData.steps || [],
+                    analysis: mealData.analysis || "",
+                    addons: mealData.addons || "",
+                    timestamp: Date.now(),
+                    lastAccessed: Date.now()
+                });
+                console.log(`✅ Saved full recipe "${mealName}" to GLOBAL cache`);
+                return true;
+            } catch (error) {
+                console.error(`Failed to save full meal:`, error);
+                return false;
+            }
+        }
+        
+        // Get full meal from global cache
+        async function getFullMealFromCache(mealName) {
+            if (!mealName) return null;
+            const mealKey = mealName.toLowerCase().replace(/[.#$/[\]]/g, "_");
+            const cacheRef = database.ref(`mealCache/${mealKey}`);
+            
+            try {
+                const snapshot = await cacheRef.once('value');
+                if (snapshot.exists()) {
+                    const cachedData = snapshot.val();
+                    await cacheRef.update({ lastAccessed: Date.now() });
+                    console.log(`📦 FULL MEAL CACHE HIT! "${mealName}"`);
+                    return cachedData;
+                }
+                return null;
+            } catch (error) {
+                console.error(`Failed to get full meal:`, error);
+                return null;
+            }
+        }
+
+        // Generate full meal recipe via backend API (secure - no exposed keys)
+        async function generateFullMealWithAI(mealName) {
+            console.log(`🤖 Generating full recipe for "${mealName}" with AI...`);
+            
+            const prompt = `Provide a complete recipe for: ${mealName}. Return ONLY valid JSON with this exact structure. No markdown, no extra text, just pure JSON:
+{
+    "chef_note": "a short, appetizing 2-sentence Filipino description",
+    "ingredients": ["ingredient 1", "ingredient 2", "ingredient 3"],
+    "nutrition": "brief nutritional facts text",
+    "steps": ["step 1", "step 2", "step 3"],
+    "analysis": "detailed nutritional analysis text",
+    "addons": "suggested add-ons or side dishes"
+}`;
+
+            try {
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: prompt })
+                });
+                const data = await response.json();
+                
+                if (data.response) {
+                    let cleanText = data.response.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+                    const recipe = JSON.parse(cleanText);
+                    await saveFullMealToCache(mealName, recipe);
+                    return recipe;
+                }
+                return null;
+            } catch (error) {
+                console.error(`AI Generation failed:`, error);
+                return null;
+            }
+        }
+        
+        // Display full meal info with typing animation
+        function displayFullMealInfo(recipe, isFromCache = false) {
+            const mealDesc = document.getElementById('mealDesc');
+            
+            // Add cached badge if from cache
+            if (isFromCache) {
+                const badge = document.createElement('span');
+                badge.className = 'cached-badge';
+                badge.innerText = '📦 From Cache';
+                mealDesc.parentElement.appendChild(badge);
+                setTimeout(() => badge.remove(), 3000);
+                console.log(`📖 Displaying CACHED data for "${currentMealName}"`);
+            } else {
+                console.log(`✨ Displaying AI-GENERATED data for "${currentMealName}"`);
+            }
+            
+            // Always use typing animation for chef's note
+            typeWriter(recipe.chef_note || "Recipe loaded!", mealDesc);
+
+            // Update accordion sections with typing animation
+            const accordionContents = document.querySelectorAll('.accordion-content');
+            
+            const formatAndTypeContent = (element, content, isArray = false) => {
+                if ((isArray || Array.isArray(content)) && Array.isArray(content)) {
+                    const list = document.createElement('ul');
+                    list.className = "ai-bullet-list typing";
+                    element.innerHTML = "";
+                    element.appendChild(list);
+                    typeWriterList(content, list);
+                } else if (typeof content === 'string') {
+                    const div = document.createElement('div');
+                    div.className = "p-2 typing";
+                    element.innerHTML = "";
+                    element.appendChild(div);
+                    typeWriter(content, div);
+                } else {
+                    element.innerHTML = `<div class="p-2 typing">${escapeHtml(content)}</div>`;
+                    const typingDiv = element.querySelector('.typing');
+                    if (typingDiv) typeWriter(content, typingDiv);
+                }
+            };
+
+            if (accordionContents.length >= 5) {
+                formatAndTypeContent(accordionContents[0], recipe.ingredients, true);
+                formatAndTypeContent(accordionContents[1], recipe.nutrition);
+                formatAndTypeContent(accordionContents[2], recipe.steps, true);
+                formatAndTypeContent(accordionContents[3], recipe.analysis);
+                formatAndTypeContent(accordionContents[4], recipe.addons);
+            }
+        }
+        
+        // Main function to fetch meal details with caching
+        async function fetchMealDetailsWithCache(mealName) {
+            const mealDesc = document.getElementById('mealDesc');
+            const accordionContents = document.querySelectorAll('.accordion-content');
+            
+            console.log(`🔍 Fetching details for meal: "${mealName}"`);
+            
+            // Reset UI to loading state
+            mealDesc.innerHTML = `<span class="text-blue-500 animate-pulse">🔍 Checking recipe cache for "${mealName}"...</span>`;
+            accordionContents.forEach(content => {
+                content.innerHTML = `<div class="p-4 text-gray-400 italic">Colette is brainstorming...</div>`;
+            });
+            
+            // Try to get full meal from cache
+            const cachedMeal = await getFullMealFromCache(mealName);
+            
+            if (cachedMeal && cachedMeal.chef_note) {
+                displayFullMealInfo(cachedMeal, true);
+            } else {
+                mealDesc.innerHTML = `<span class="text-blue-500 animate-pulse">🤖 Colette is brainstorming a fresh recipe for "${mealName}"...</span>`;
+                const newRecipe = await generateFullMealWithAI(mealName);
+                if (newRecipe) {
+                    displayFullMealInfo(newRecipe, false);
+                } else {
+                    mealDesc.innerHTML = `<span class="text-red-500">❌ Failed to load recipe. Please try again.</span>`;
+                }
+            }
+        }
+        
+        // ========== END MEAL CACHE SYSTEM ==========
+
         function initVideoResize() {
             if (videoSizeSlider && sizeValueSpan && initialVideoElem) {
                 videoSizeSlider.addEventListener('input', (e) => {
@@ -543,17 +729,28 @@
                 window.location.href = "index.html";
                 return;
             }
+
             currentUser = user;
+            
+            // Load user profile
             database.ref('users/' + user.uid).once('value').then((snapshot) => {
                 const data = snapshot.val();
                 const name = (data && data.username) ? data.username : (user.displayName || "User");
                 updateProfileUI(name, user.email);
             });
-            document.getElementById('leftSidebarContainer').classList.remove('hidden');
-            document.getElementById('brandLogo').classList.add('hidden');
-            document.getElementById('logoutBtn').classList.remove('hidden');
-        });
 
+            // Ensure sidebar elements are visible
+            document.getElementById('leftSidebarContainer').classList.remove('hidden');
+            document.getElementById('logoutBtn').classList.remove('hidden');
+            
+            // Check for URL parameter to open meal
+            const urlParams = new URLSearchParams(window.location.search);
+            const mealToOpen = urlParams.get('open');
+            if (mealToOpen) {
+                openMealOverview(decodeURIComponent(mealToOpen));
+            }
+        });
+        
         function updateProfileUI(name, email) {
             document.getElementById('userNameDisplay').textContent = name;
             document.getElementById('userEmailDisplay').textContent = email;
@@ -588,92 +785,29 @@
                 </li>`).join('');
         }
 
-        // NEW FUNCTION: Get or generate meal content from cache/database
-        async function getMealContent(mealName, sectionType) {
-            if (!currentUser) return null;
-            
-            const mealId = mealName.replace(/[.#$/[\]]/g, "_");
-            const contentRef = database.ref(`users/${currentUser.uid}/meal_cache/${mealId}/${sectionType}`);
-            
-            // Try to get from cache first
-            const snapshot = await contentRef.once('value');
-            if (snapshot.exists()) {
-                console.log(`Loaded ${sectionType} for ${mealName} from cache`);
-                return snapshot.val();
-            }
-            
-            // If not in cache, generate via AI
-            console.log(`Generating ${sectionType} for ${mealName} via API...`);
-            let aiPrompt = "";
-            switch(sectionType) {
-                case 'description':
-                    aiPrompt = `Give a short, appetizing 2-sentence Filipino description for ${mealName}.`;
-                    break;
-                case 'Ingredients':
-                    aiPrompt = `Provide Ingredients for "${mealName}". Keep it concise and use bullets.`;
-                    break;
-                case 'Nutritional Facts':
-                    aiPrompt = `Provide Nutritional Facts for "${mealName}". Keep it concise and use bullets.`;
-                    break;
-                case 'Step by Step Process':
-                    aiPrompt = `Provide Step by Step Process for "${mealName}". Keep it concise and use bullets.`;
-                    break;
-                case 'Nutritional Analysis':
-                    aiPrompt = `Provide Nutritional Analysis for "${mealName}". Keep it concise and use bullets.`;
-                    break;
-                case 'Add-ons Suggestion':
-                    aiPrompt = `Provide Add-ons Suggestion for "${mealName}". Keep it concise and use bullets.`;
-                    break;
-                default:
-                    return null;
-            }
-            
-            const response = await fetch('/api/generate', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ contents: [{ parts: [{ text: "Hello!" }] }] })
-});
-
-// GET AS TEXT FIRST TO AVOID CRASHING
-const rawText = await response.text();
-console.log("Raw Response from Vercel:", rawText);
-
-try {
-    const data = JSON.parse(rawText);
-    console.log("Success:", data);
-} catch (e) {
-    console.error("The server sent back text, not JSON. Look at 'Raw Response' above!");
-}
-            
-            // Save to cache
-            await contentRef.set(aiResponse);
-            console.log(`Saved ${sectionType} for ${mealName} to cache`);
-            
-            return aiResponse;
-        }
-
         async function openMealOverview(name) {
             if (!currentUser) { alert("Please log in first!"); return; }
             currentMealName = name;
+            
+            // Save to cooking history
             const historyRef = database.ref(`users/${currentUser.uid}/history`).push();
             historyRef.set({ name: name, ingredients: ingredients.length > 0 ? ingredients.join(", ") : "None specified", cookedAt: Date.now() });
+            
+            // Switch views
             document.getElementById('mainDashboard').classList.add('hidden');
             document.getElementById('mealOverview').classList.remove('hidden');
             document.getElementById('overviewMealName').innerText = name;
+            
+            // Check favorite status
             const mealId = name.replace(/[.#$/[\]]/g, "_");
             database.ref(`users/${currentUser.uid}/favorites/${mealId}`).once('value', s => setStarState(s.exists()));
-            document.querySelectorAll('.accordion-content').forEach(el => { el.classList.remove('open'); el.innerHTML = ""; });
-            document.querySelectorAll('#accordionGroup span').forEach(s => s.innerText = "+");
-            const descEl = document.getElementById('mealDesc');
-            descEl.innerText = "";
             
-            // Get description from cache or generate
-            const description = await getMealContent(name, 'description');
-            if (description) {
-                typeWriter(description, descEl);
-            } else {
-                descEl.innerText = "Unable to load description.";
-            }
+            // Reset accordion state
+            document.querySelectorAll('.accordion-content').forEach(el => { el.classList.remove('open'); });
+            document.querySelectorAll('#accordionGroup span').forEach(s => s.innerText = "+");
+            
+            // Fetch and display meal details (with caching)
+            await fetchMealDetailsWithCache(name);
         }
 
         function toggleFavorite() {
@@ -695,21 +829,48 @@ try {
             if (content.classList.contains('open')) {
                 content.classList.remove('open'); span.innerText = "+";
             } else {
-                content.innerHTML = "<p class='py-4 italic text-gray-400 text-center'>Consulting the chef...</p>";
+                content.innerHTML = "<p class='py-4 italic text-gray-400 text-center'>Colette is brainstorming...</p>";
                 content.classList.add('open'); span.innerText = "-";
                 
-                // Get content from cache or generate
-                const aiRes = await getMealContent(currentMealName, type);
+                // Try to get from cache first
+                const cachedMeal = await getFullMealFromCache(currentMealName);
+                let sectionContent = null;
                 
-                content.innerHTML = ""; 
-                if (aiRes) {
+                if (cachedMeal) {
+                    switch(type) {
+                        case 'Ingredients': sectionContent = cachedMeal.ingredients; break;
+                        case 'Nutritional Facts': sectionContent = cachedMeal.nutrition; break;
+                        case 'Step by Step Process': sectionContent = cachedMeal.steps; break;
+                        case 'Nutritional Analysis': sectionContent = cachedMeal.analysis; break;
+                        case 'Add-ons Suggestion': sectionContent = cachedMeal.addons; break;
+                        default: sectionContent = null;
+                    }
+                }
+                
+                if (sectionContent) {
+                    // Display from cache with typing animation
+                    if (Array.isArray(sectionContent)) {
+                        const list = document.createElement('ul');
+                        list.className = "ai-bullet-list typing";
+                        content.innerHTML = "";
+                        content.appendChild(list);
+                        typeWriterList(sectionContent, list);
+                    } else {
+                        const div = document.createElement('div');
+                        div.className = "p-2 typing";
+                        content.innerHTML = "";
+                        content.appendChild(div);
+                        typeWriter(sectionContent, div);
+                    }
+                } else {
+                    // Generate with AI
+                    const aiRes = await callAI(`Provide ${type} for "${currentMealName}". Keep it concise and use bullet points.`);
+                    content.innerHTML = ""; 
                     const list = document.createElement('ul');
                     list.className = "ai-bullet-list typing";
                     content.appendChild(list);
                     const items = aiRes.split(/\n/).filter(l => l.trim().length > 0).map(l => l.replace(/^(\d+\.|\*|-)\s+/, ""));
                     typeWriterList(items, list);
-                } else {
-                    content.innerHTML = "<p class='py-4 italic text-red-400 text-center'>Failed to load content.</p>";
                 }
             }
         }
@@ -728,51 +889,59 @@ try {
         }
 
         async function callAI(text) {
-    try {
-        const response = await fetch('/api/generate', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                contents: [{ parts: [{ text: text }] }] 
-            })
-        });
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error("Vercel Error:", errorText);
-            throw new Error("Server error");
+            try {
+                const res = await fetch('/api/generate', {
+                    method: 'POST', 
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ prompt: text })
+                });
+                const data = await res.json();
+                return data.response;
+            } catch { 
+                return "Error loading content."; 
+            }
         }
 
-        const data = await response.json();
-        // Extracting the text from Gemini's specific JSON structure
-        return data.candidates[0].content.parts[0].text;
-    } catch (err) {
-        console.error("AI Fetch Error:", err);
-        return "Error loading content.";
-    }
-}
-
-        function typeWriter(text, element, speed = 15) {
-            let i = 0; element.classList.add('typing');
+        function typeWriter(text, element, speed = 20) {
+            let i = 0;
+            element.classList.add('typing');
+            element.innerHTML = '';
             (function type() {
-                if (i < text.length) { element.innerHTML += text.charAt(i); i++; setTimeout(type, speed); }
-                else { element.classList.remove('typing'); }
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.remove('typing');
+                }
             })();
         }
 
-        function typeWriterList(items, container, speed = 10) {
+        function typeWriterList(items, container, speed = 15) {
             let itemIdx = 0;
+            container.classList.add('typing');
+            
             (function nextItem() {
                 if (itemIdx < items.length) {
                     const li = document.createElement('li');
+                    li.classList.add('typing');
                     container.appendChild(li);
                     let charIdx = 0;
+                    const text = items[itemIdx];
                     (function typeChar() {
-                        if (charIdx < items[itemIdx].length) {
-                            li.innerHTML += items[itemIdx].charAt(charIdx); charIdx++; setTimeout(typeChar, speed);
-                        } else { itemIdx++; nextItem(); }
+                        if (charIdx < text.length) {
+                            li.innerHTML = text.substring(0, charIdx + 1);
+                            charIdx++;
+                            setTimeout(typeChar, speed);
+                        } else {
+                            li.classList.remove('typing');
+                            itemIdx++;
+                            nextItem();
+                        }
                     })();
-                } else { container.classList.remove('typing'); }
+                } else {
+                    container.classList.remove('typing');
+                }
             })();
         }
 
@@ -782,6 +951,7 @@ try {
         }
 
         function escapeHtml(text) {
+            if (!text) return '';
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
@@ -842,9 +1012,9 @@ try {
             resultsScreenDiv.classList.add('hidden');
             if (initialVideoElem) initialVideoElem.play().catch(e => console.log("Initial video autoplay prevented"));
             initVideoResize();
-            const urlParams = new URLSearchParams(window.location.search);
-            const mealToOpen = urlParams.get('open');
-            if (mealToOpen) openMealOverview(decodeURIComponent(mealToOpen));
+            console.log('🚀 MainDashboard loaded with GLOBAL MEAL CACHE SYSTEM!');
+            console.log('💾 Meals are stored in Firebase "mealCache" node');
+            console.log('📖 First load = AI generates (via secure backend), subsequent loads = from cache for ALL users!');
         };
     </script>
 </body>
